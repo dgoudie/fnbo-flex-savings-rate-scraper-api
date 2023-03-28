@@ -37,7 +37,7 @@ public class Handler {
         getAndStoreRate();
     }
 
-    @Scheduled(cron = "0 0 22 * * MON-FRI")
+    @Scheduled(cron = "0 0 13 * * MON-FRI")
     private void getAndStoreRate() {
         double rate;
         try {
