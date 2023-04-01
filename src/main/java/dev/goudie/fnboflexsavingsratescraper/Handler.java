@@ -37,7 +37,7 @@ public class Handler {
         getAndStoreRate();
     }
 
-    @Scheduled(cron = "0 0 13 * * MON-FRI")
+    @Scheduled(cron = "0 0 13 * * MON-SAT")
     private void getAndStoreRate() {
         double rate;
         try {
@@ -61,13 +61,13 @@ public class Handler {
                     e
             );
         }
-//        Double mostRecentRate = repository.getMostRecentRate();
+        Double mostRecentRate = repository.getMostRecentRate();
         repository.writeRate(rate);
-//        if (mostRecentRate != null) {
-//            if (mostRecentRate.equals(rate)) {
-//                return;
-//            }
-//        }
+        if (mostRecentRate != null) {
+            if (mostRecentRate.equals(rate)) {
+                return;
+            }
+        }
         pushHandler.sendNotifications(rate);
     }
 
